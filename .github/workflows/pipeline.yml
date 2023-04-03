@@ -80,10 +80,7 @@ jobs:
       - name: Test Fail
         uses: rjstone/discord-webhook-notify@v1
         with:
-          # severity: error
-          # avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
-          # text: A new version of Pokedex deployed
-          # webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           severity: error
-          details: Test error.
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
+          text: A new version of Pokedex deployed
+          # webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
