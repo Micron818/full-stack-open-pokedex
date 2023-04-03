@@ -59,3 +59,27 @@ jobs:
           WITH_V: true
           DEFAULT_BUMP: patch
           DRY_RUN: false
+
+  discard_webhook:
+    if: ${{ github.event_name == 'push' }}
+    needs: [deployment_pipeline]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Test Success
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
+          text: A new version of Pokedex deployed
+
+      - name: Test Fail
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
+          text: A new version of Pokedex deployed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
