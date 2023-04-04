@@ -87,4 +87,4 @@ jobs:
           avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
           text: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          description: '${{github.action_repository}} by ${{github.actor}}'
+          description: '${{github.repository }} by ${{github.actor}}'
