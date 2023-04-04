@@ -36,12 +36,12 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
 
-      # - name: Wait for Render Deployment
-      #   if: ${{ github.event_name == 'push' }}
-      #   uses: johnbeynon/render-deploy-action@v0.0.8
-      #   with:
-      #     service-id: ${{ secrets.RENDER_SERVICE_ID }}
-      #     api-key: ${{ secrets.RENDER_API_KEY }}
+      - name: Wait for Render Deployment
+        if: ${{ github.event_name == 'push' }}
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
 
   tag_release:
     if: ${{ github.event_name == 'push' }}
@@ -76,6 +76,9 @@ jobs:
           severity: info
           avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
           text: A new version of Pokedex deployed
+          description:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        run: echo ${{ <context> }}
 
       - name: Test Fail
         uses: rjstone/discord-webhook-notify@v1
@@ -83,4 +86,4 @@ jobs:
           severity: error
           avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
           text: A new version of Pokedex deployed
-          # webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
