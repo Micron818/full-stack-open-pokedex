@@ -65,26 +65,25 @@ jobs:
     needs: [deployment_pipeline]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+      # - uses: actions/checkout@v3
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '16'
 
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: info
-          avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
+          avatarUrl: ${{github.event.sender.avatar_url }}
           text: A new version of Pokedex deployed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          description: '${{github.action_repository}} by ${{github.actor}}'
-          details: ''
+          description: '${{github.event.head_commit.message}} by ${{github.actor}}'
 
       - name: Test Fail
         uses: rjstone/discord-webhook-notify@v1
         with:
           severity: error
-          avatarUrl: https://avatars.githubusercontent.com/u/5591316?s=400&v=4
+          avatarUrl: ${{github.event.sender.avatar_url }}
           text: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          description: '${{github.repository }} by ${{github.actor}}'
+          description: '${{github.event.head_commit.url }} by ${{github.actor}} broke the build :('
