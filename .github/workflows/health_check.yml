@@ -2,11 +2,11 @@ name: Healthcheck
 
 on:
   schedule:
-    - cron: '2 * * * *'
+    - cron: '0 5 * * *'
 
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
 
 jobs:
   ping_the_app:
