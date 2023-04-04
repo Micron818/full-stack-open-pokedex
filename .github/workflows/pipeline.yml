@@ -70,6 +70,9 @@ jobs:
         with:
           node-version: '16'
 
+      - name: log
+        run: echo ${{ <context> }}
+
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
         with:
@@ -78,7 +81,6 @@ jobs:
           text: A new version of Pokedex deployed
           description:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-        run: echo ${{ <context> }}
 
       - name: Test Fail
         uses: rjstone/discord-webhook-notify@v1
