@@ -86,4 +86,5 @@ jobs:
           avatarUrl: ${{github.event.sender.avatar_url }}
           text: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          description: '${{github.event.head_commit.url }} by ${{github.actor}} broke the build :('
+          description: 'commit'
+          details: '${{github.event.head_commit.url }} by ${{github.actor}} broke the build :('
