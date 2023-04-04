@@ -71,7 +71,8 @@ jobs:
           node-version: '16'
 
       - name: log
-        run: echo ${{ <context> }}
+        run: |
+          echo ${{ <context> }}
 
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
